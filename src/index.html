@@ -8,11 +8,61 @@
       content="Used as a boilerplate for tasks in the 'HTML, CSS and SASS' course in boom.dev"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <form id="cardForm">
+    <div class="input-group">
+        <div class="card-input-row row w-100 mt-5">
+            <div class="col-12">
+                <label for="card-number" class="mb-1 input-group-label">Card Number</label>
+                <input id="card-number" pattern="\d*" maxlength="19" type="text" placeholder="••••  ••••  ••••  ••••" class="form-control w-100 shadow mb-3 input-group-inputs">
+            </div>
+            <div class="col-12">
+                <label for="cardName" class="mb-1 input-group-label">Name</label>
+                <input id="cardName" name="cardName" type="text" placeholder="••••••••  ••••••••" class="form-control w-100 shadow input-group-inputs mb-3" oninput="refineValue(event)">
+            </div>
+            <div class="row" style="padding-right: 0px ">
+                <div class="col-5" style="padding-right: 0px; padding-right: 0px;">
+                    <label for="card-date" class="mb-1 input-group-label">Expiration Date</label>
+                    <input id="card-date" type="text" placeholder="MM/YY" class="form-control w-100 shadow input-group-inputs">
+                </div>
+                <div class="col-2"></div>
+                <div class="col-5" style="padding-right: 0px; padding-right: 0px;">
+                    <label for="card-cvc" class="mb-1 input-group-label">CVC</label>
+                    <input id="card-cvc" type="text" placeholder="•••" class="form-control w-100 shadow input-group-inputs">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.1/additional-methods.min.js"></script>
+
+<script>
+  $('#cardForm').validate({
+    rules: {
+      cardName: {
+        required: true,
+        lettersonly: true,
+      },
+    },
+  });
+</script>
   </head>
   <body>
-    <div class="main">
-      <div class="emoji mb-6">💣🤯💥</div>
-      <button class="button">Boom?</button>
-    </div>
+    ​<script>
+        function refineValue(event){
+  const target = event.target;
+  const value = target.value
+  if(/^[A-Za-z]+$/gi.test(value) == false){
+    target.value = value.slice(0,-1)
+  }
+}
+        </script>
   </body>
 </html>
